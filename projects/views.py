@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Project,Task
-# from .forms import TaskForm
+from .forms import TaskForm
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.urls import reverse_lazy
@@ -10,12 +10,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
+
+def index(request):
+    return render(request, 'index.html')
                
 # @login_required
 def projectList(request):
-   projects = Project.objects.all()
-   print(projects)
-  
+   projects = Project.objects.all() 
    context = {'projects':projects}
    return render(request, 'projects/projects.html',context)
 
